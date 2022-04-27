@@ -1,0 +1,29 @@
+{
+  "name": "foodfinder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack watch",
+    "dev-server": "webpack serve --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhysflook/foodfinder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rhysflook/foodfinder/issues"
+  },
+  "homepage": "https://github.com/rhysflook/foodfinder#readme",
+  "dependencies": {
+    "googleapis": "^100.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
