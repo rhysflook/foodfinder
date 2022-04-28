@@ -2,7 +2,10 @@
 <html>
   <head>
     <title>Details</title>
-    <link ref="stylesheet" href="../css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
   </head>
   <body>
     <div class="container">
@@ -10,7 +13,9 @@
         <div class="title" id="title"></div>
         <div class="reviews" id="reviews"></div>
       </div>
-      <div class="photos" id="photos"></div>
+      <div class="right-side">
+        <div class="photos" id="photos"></div>
+      </div>
     </div>
     <script
       async

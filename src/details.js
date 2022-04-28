@@ -18,23 +18,28 @@ const getStoreDetails = () => {
         </div>
     `;
     const reviews = document.getElementById('reviews');
-    results.reviews.forEach((review) => {
-      const userReview = document.createElement('div');
-      userReview.className = 'user-review';
-      userReview.innerHTML = `
+    results.reviews !== undefined &&
+      results.reviews.forEach((review) => {
+        const userReview = document.createElement('div');
+        userReview.className = 'user-review';
+        userReview.innerHTML = `
         <p>${review.author_name}</p>
         <p>${review.rating}</p>
-        <p>${review.text}</p>
+        <p class="review-content">${review.text}</p>
         `;
-      reviews.appendChild(userReview);
-    });
+        reviews.appendChild(userReview);
+      });
     const photos = document.getElementById('photos');
-    results.photos.forEach((photo) => {
-      const storePhoto = document.createElement('img');
-      storePhoto.className = 'details-img';
-      storePhoto.src = photo.getUrl({ maxWidth: 400, maxHeight: 400 });
-      photos.appendChild(storePhoto);
-    });
+    results.photos !== undefined &&
+      results.photos.forEach((photo) => {
+        const photoFrame = document.createElement('div');
+        photoFrame.className = 'photo-box';
+        const storePhoto = document.createElement('img');
+        storePhoto.className = 'details-img';
+        storePhoto.src = photo.getUrl({ maxWidth: 300, maxHeight: 300 });
+        photoFrame.appendChild(storePhoto);
+        photos.appendChild(photoFrame);
+      });
   });
 };
 

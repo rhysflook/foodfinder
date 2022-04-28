@@ -1,6 +1,16 @@
+html {
+  height: 100%;
+  font-family: 'Nunito', sans-serif;
+}
 body {
-  color: rgb(242, 216, 149);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(40, 37, 31);
   margin: 0;
+  background: linear-gradient(180deg, #b9cad1, #7383ac, #b3c5ea);
+
+  height: 100%;
 }
 
 .row-item {
@@ -35,7 +45,89 @@ body {
   padding: 20px;
 }
 
+.review-content {
+  font-size: 0.8em;
+}
+
+.container {
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px rgb(96, 36, 118);
+  background-color: rgb(219, 210, 200);
+  width: 90%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 40%;
+}
+.right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 60%;
+}
+
+.title {
+  height: 15%;
+  width: 92%;
+}
+
+.reviews {
+  width: 92%;
+  height: 75%;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.photos {
+  width: 90%;
+  height: 90%;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.photo-box {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .details-img {
-  width: 300px;
-  height: 300px;
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+  box-shadow: 2px 2px 3px rgb(96, 36, 118);
+}
+
+::-webkit-scrollbar {
+  margin-right: 4px;
+  height: 98%;
+  width: 0.5em;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  background-color: rgb(123, 159, 169);
+  outline: 1px solid rgb(95, 109, 161);
 }

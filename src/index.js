@@ -90,7 +90,7 @@ const setupDetailsButton = (id) => {
   const button = document.getElementById(id);
   button.addEventListener(
     'click',
-    () => (window.location.href = `./details.html?code=${result.place_id}`)
+    () => (window.location.href = `./details.php?code=${id}`)
   );
 };
 
