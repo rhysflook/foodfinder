@@ -8,7 +8,7 @@
             $p = "pass";
             $pdo = new PDO( $dsn, $u, $p );
     
-            $sql = "SELECT * FROM users WHERE id = :id";
+            $sql = "SELECT * FROM user WHERE 氏名 = :id";
             $st = $pdo->prepare( $sql );
             $st->bindValue( ":id", $_POST["login_id"], PDO::PARAM_STR );
             $st->execute();
@@ -17,10 +17,10 @@
             if ( $result ) {
                 if ( password_verify( $_POST["login_pass"], $result["password"]) ) {
                     $_SESSION["id"] = $result["id"];
-                    $_SESSION["name"] = $result["name"];
+                    $_SESSION["name"] = $result["氏名"];
                 }
                 else {
-                    header( "Location:Home.php" );
+                    header( "Location: search.php" );
                     exit();            
                 }
             }
