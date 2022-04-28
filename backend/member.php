@@ -3,9 +3,9 @@
 
     if ( !isset( $_SESSION["id"] ) ) {
         try {
-            $dsn = "mysql:host=127.0.0.1;dbname=db3;charset=utf8";
-            $u = "user1";
-            $p = "pass1";
+            $dsn = "mysql:host=192.168.40.64;dbname=b202213;charset=utf8";
+            $u = "rhys";
+            $p = "pass";
             $pdo = new PDO( $dsn, $u, $p );
     
             $sql = "SELECT * FROM users WHERE id = :id";

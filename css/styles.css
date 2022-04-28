@@ -1,0 +1,41 @@
+body {
+  color: rgb(242, 216, 149);
+  margin: 0;
+}
+
+.row-item {
+  color: rgb(95, 109, 161);
+  background-color: rgb(175, 196, 201);
+  box-shadow: 4px 4px 4px rgb(123, 159, 169);
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.store-name {
+  width: 200px;
+}
+
+.row-item .rating,
+.row-item .status {
+  width: 10%;
+}
+
+.row-img {
+  width: 200px;
+  height: 200px;
+}
+
+.search-section {
+  text-align: center;
+  background-color: rgb(132, 184, 184);
+  box-shadow: 4px 5px 10px rgb(62, 98, 98), -4px 5px 10px rgb(62, 98, 98);
+  padding: 20px;
+}
+
+.details-img {
+  width: 300px;
+  height: 300px;
+}

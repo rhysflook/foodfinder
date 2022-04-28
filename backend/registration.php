@@ -24,14 +24,14 @@ session_start();
     <?php
     if (isset($_POST["user_id"])) {
         try {
-            $dsn = "mysql:host=127.0.0.1;dbname=db3;charset=utf8";
-            $u = "user1";
-            $p = "pass1";
+            $dsn = "mysql:host=192.168.40.64;dbname=b202213;charset=utf8";
+            $u = "rhys";
+            $p = "pass";
             $pdo = new PDO($dsn, $u, $p);
 
-            $sql = "SELECT * FROM users WHERE id = :id";
+            $sql = "SELECT * FROM user WHERE 氏名 = :name";
             $st = $pdo->prepare($sql);
-            $st->bindValue(":id", $_POST["user_id"], PDO::PARAM_STR);
+            $st->bindValue(":name", $_POST["user_id"], PDO::PARAM_STR);
             $st->execute();
 
             $result = $st->fetch(PDO::FETCH_ASSOC);
@@ -39,12 +39,11 @@ session_start();
 				echo"error";
             } else {
 
-                $sql = "INSERT INTO users VALUES(:id,:pass,:name)";
+                $sql = "INSERT INTO user (氏名, パスワード) VALUES(:name,:pass)";
                 $st = $pdo->prepare($sql);
-                $st->bindValue(":id", $_POST["user_id"], PDO::PARAM_STR);
                 $hash = password_hash($_POST["user_pass"], PASSWORD_DEFAULT);
                 $st->bindValue(":pass", $hash, PDO::PARAM_STR);
-                $st->bindValue(":name", $_POST["user_name"], PDO::PARAM_STR);
+                $st->bindValue(":name", $_POST["user_id"], PDO::PARAM_STR);
                 if ($st->execute()) {
 				echo "<p id='completion'>登録されました。</p>";
 
@@ -59,7 +58,7 @@ session_start();
                 }
             }
         } catch (Exception $e) {
-            echo "接続できませんでした。";
+            echo $e."接続できませんでした。";
         }
     } else {
     ?>

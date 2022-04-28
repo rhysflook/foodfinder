@@ -1,31 +1,46 @@
+var isLocal = window.location.href.includes('localhost');
+
 const initMap = () => {
   const addressBar = document.getElementById('address');
-  const distanceField = document.getElementById('distance');
   const searchBtn = document.getElementById('search');
 
   searchBtn.addEventListener('click', () => {
-    setupRequest(addressBar.value, distanceField.value * 1000);
+    setupRequest(addressBar.value);
   });
 };
 
-const setupRequest = (location, distance) => {
-  const geocoder = new google.maps.Geocoder();
-  geocoder.geocode({ address: location }, (results, status) => {
-    if (status === 'OK') {
-      const coords = new google.maps.LatLng(
-        results[0].geometry.location.lat(),
-        results[0].geometry.location.lng()
-      );
-      const request = {
-        location: coords,
-        radius: distance,
-        type: ['restaurant'],
-      };
-      search(request);
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
+const geoCallback = (results, status) => {
+  if (status === 'OK') {
+    console.log(results);
+    const coords = new google.maps.LatLng(
+      results[0].geometry.location.lat,
+      results[0].geometry.location.lng
+    );
+    const distanceField = document.getElementById('distance');
+    const request = {
+      location: coords,
+      radius: distanceField.value * 1000,
+      type: ['restaurant'],
+    };
+    search(request);
+  } else {
+    alert('Geocode was not successful for the following reason: ' + status);
+  }
+};
+
+const localGeo = async () => {
+  const response = await fetch('../example_data/geography.json');
+  const { results, status } = await response.json();
+  geoCallback(results, status);
+};
+
+const setupRequest = (location) => {
+  if (isLocal) {
+    localGeo();
+  } else {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: location }, geoCallback);
+  }
 };
 
 const search = (request) => {
@@ -34,11 +49,49 @@ const search = (request) => {
   );
   service.nearbySearch(request, (results, status) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
+      const resultArea = document.getElementById('results');
       results.forEach((result) => {
-        console.log(result);
+        resultArea.appendChild(createRow(result));
+        setupDetailsButton(result.place_id);
       });
     }
   });
+};
+
+const createRow = (result) => {
+  const row = document.createElement('div');
+  row.className = 'row-item';
+  row.innerHTML = `
+    <div class="store-name">
+      <h3>${result.name}</h3>
+      ${getPhoto(result.photos)}
+    </div>
+    <p class="status">${result.open_now ? 'Open' : 'Closed'}</p>
+    <p class="rating">${result.rating} / 5</p>
+    <div class="directions">
+      <p class="address">${result.vicinity}</p>
+    </div>
+    <button id="${result.place_id}">Details</button>
+  `;
+
+  return row;
+};
+
+const getPhoto = (photos) => {
+  return photos !== undefined
+    ? `<img class="row-img" src="${photos[0].getUrl({
+        maxWidth: 200,
+        maxHeight: 200,
+      })}">`
+    : '';
+};
+
+const setupDetailsButton = (id) => {
+  const button = document.getElementById(id);
+  button.addEventListener(
+    'click',
+    () => (window.location.href = `./details.html?code=${result.place_id}`)
+  );
 };
 
 window.initMap = initMap;
