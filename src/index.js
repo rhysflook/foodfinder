@@ -1,11 +1,15 @@
+import { addToFavourites, getUser, init, setupFavButton } from './utils.js';
+
 var isLocal = window.location.href.includes('localhost');
 
 const initMap = () => {
-  const addressBar = document.getElementById('address');
-  const searchBtn = document.getElementById('search');
+  init(() => {
+    const addressBar = document.getElementById('address');
+    const searchBtn = document.getElementById('search');
 
-  searchBtn.addEventListener('click', () => {
-    setupRequest(addressBar.value);
+    searchBtn.addEventListener('click', () => {
+      setupRequest(addressBar.value);
+    });
   });
 };
 
@@ -53,6 +57,7 @@ const search = (request) => {
       results.forEach((result) => {
         resultArea.appendChild(createRow(result));
         setupDetailsButton(result.place_id);
+        setupFavButton(result.place_id);
       });
     }
   });
@@ -72,6 +77,7 @@ const createRow = (result) => {
       <p class="address">${result.vicinity}</p>
     </div>
     <button id="${result.place_id}">Details</button>
+    <p class="like-button" id="favourites-${result.place_id}"><3</p>
   `;
 
   return row;
@@ -94,4 +100,8 @@ const setupDetailsButton = (id) => {
   );
 };
 
-window.initMap = initMap;
+initMap();
+
+// getUser(() => {
+//   initMap();
+// });

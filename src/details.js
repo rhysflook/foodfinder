@@ -1,5 +1,9 @@
+import { addToFavourites, init, setupFavButton } from './utils.js';
+
 const initMap = () => {
-  getStoreDetails();
+  init(() => {
+    getStoreDetails();
+  });
 };
 
 const getStoreDetails = () => {
@@ -11,12 +15,18 @@ const getStoreDetails = () => {
     const title = document.getElementById('title');
     title.innerHTML = `
         <div class="title-box">
-            <h2>${results.name}</h2>
+            <div class="upper-box">
+              <h2>${results.name}</h2>
+              <p class="like-button" id="favourites-${getCode()}"><3</p>
+            </div>
             <div class="rating-box">
-                <p>${results.rating} with ${results.user_ratings_total} total ratings</p>
+                <p>${results.rating} with ${
+      results.user_ratings_total
+    } total ratings</p>
             </div>
         </div>
     `;
+    setupFavButton(getCode());
     const reviews = document.getElementById('reviews');
     results.reviews !== undefined &&
       results.reviews.forEach((review) => {
@@ -49,3 +59,4 @@ const getCode = () => {
 };
 
 window.initMap = initMap;
+initMap();

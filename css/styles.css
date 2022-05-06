@@ -2,6 +2,11 @@ html {
   height: 100%;
   font-family: 'Nunito', sans-serif;
 }
+
+button {
+  height: 20px;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -11,6 +16,23 @@ body {
   background: linear-gradient(180deg, #b9cad1, #7383ac, #b3c5ea);
 
   height: 100%;
+}
+
+.flex-box {
+  display: flex;
+}
+
+.like-button {
+  margin-left: 10px;
+}
+
+.like-button:hover {
+  cursor: pointer;
+}
+
+.like-button:active {
+  text-shadow: 3px 3px 5px red, -3px 3px 5px red, -3px -3px 5px red,
+    3px -3px 5px red;
 }
 
 .row-item {
@@ -81,6 +103,17 @@ body {
 .title {
   height: 15%;
   width: 92%;
+}
+
+.title-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.upper-box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .reviews {

@@ -12,16 +12,20 @@
             $st = $pdo->prepare( $sql );
             $st->bindValue( ":id", $_POST["login_id"], PDO::PARAM_STR );
             $st->execute();
+            
     
             $result = $st->fetch( PDO::FETCH_ASSOC );
             if ( $result ) {
-                if ( password_verify( $_POST["login_pass"], $result["password"]) ) {
+
+                if ( password_verify( $_POST["login_pass"], $result["パスワード"]) ) {
                     $_SESSION["id"] = $result["id"];
                     $_SESSION["name"] = $result["氏名"];
+                    echo 'hey';
+                    header("Location: search.php");
+                    exit(); 
                 }
                 else {
-                    header( "Location: search.php" );
-                    exit();            
+                    echo 'password incorrect';
                 }
             }
             else {
@@ -45,8 +49,7 @@
 	<title>FF</title>
 </head>
 <body>
-<?= $_SESSION["name"] ?>さん、こんにちは。
-<hr>
-<?php include "Home.html" ?>
+
+
 </body>
 </html>
