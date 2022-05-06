@@ -20,14 +20,14 @@
             <button id="search">Search</button>
         </div>
         <div id="results"></div>
-        <script
-            id='google'
-            async
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxcVTM6J2AoRuhC6guYnS_B4_jAO78ctI&libraries=places"
-            defer>
-        </script>
         <script type="module" src="../src/index.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script
+            id='google'
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxcVTM6J2AoRuhC6guYnS_B4_jAO78ctI&libraries=places"
+            defer
+            >
+        </script>
 
 
     </body>

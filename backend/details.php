@@ -17,13 +17,13 @@
         <div class="photos" id="photos"></div>
       </div>
     </div>
-    <script
-        id='google'
-        async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxcVTM6J2AoRuhC6guYnS_B4_jAO78ctI&libraries=places"
-        defer>
-    </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" src="../src/details.js"></script>
+    <script
+        id='google'
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxcVTM6J2AoRuhC6guYnS_B4_jAO78ctI&libraries=places"
+        defer
+        >
+    </script>
   </body>
 </html>

@@ -1,10 +1,15 @@
+:root {
+  --main-colour: rgb(175, 196, 201);
+  --secondary-colour: rgb(95, 109, 161);
+  --tertiary-colour: rgb(95, 109, 161);
+  --detail-page-colour: rgb(182, 219, 216);
+  --fancy-shadow-colour: rgb(96, 36, 118);
+  --bg-colour: rgb(214, 231, 228);
+}
+
 html {
   height: 100%;
   font-family: 'Nunito', sans-serif;
-}
-
-button {
-  height: 20px;
 }
 
 body {
@@ -13,13 +18,15 @@ body {
   align-items: center;
   color: rgb(40, 37, 31);
   margin: 0;
-  background: linear-gradient(180deg, #b9cad1, #7383ac, #b3c5ea);
+  /* background: linear-gradient(
+      180deg,
+      var(--main-colour),
+      var(--secondary-colour),
+      var(--main-colour)
+    ); */
+  background-color: var(--bg-colour);
 
   height: 100%;
-}
-
-.flex-box {
-  display: flex;
 }
 
 .like-button {
@@ -36,9 +43,9 @@ body {
 }
 
 .row-item {
-  color: rgb(95, 109, 161);
-  background-color: rgb(175, 196, 201);
-  box-shadow: 4px 4px 4px rgb(123, 159, 169);
+  color: var(--tertiary-colour);
+  background-color: var(--main-colour);
+  box-shadow: 4px 4px 4px var(--secondary-colour);
   padding: 20px;
   margin: 20px;
   display: flex;
@@ -56,15 +63,8 @@ body {
 }
 
 .row-img {
-  width: 200px;
-  height: 200px;
-}
-
-.search-section {
-  text-align: center;
-  background-color: rgb(132, 184, 184);
-  box-shadow: 4px 5px 10px rgb(62, 98, 98), -4px 5px 10px rgb(62, 98, 98);
-  padding: 20px;
+  width: 120px;
+  height: 120px;
 }
 
 .review-content {
@@ -73,14 +73,16 @@ body {
 
 .container {
   border-radius: 15px;
-  box-shadow: 5px 5px 10px rgb(96, 36, 118);
-  background-color: rgb(219, 210, 200);
+  box-shadow: 5px 5px 10px var(--fancy-shadow-colour) inset;
+  background-color: var(--detail-page-colour);
   width: 90%;
-  height: 80%;
+  height: auto;
   display: flex;
+  flex-direction: column-reverse;
   justify-content: center;
   margin: auto;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .left-side {
@@ -88,21 +90,17 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 40%;
+  width: 100%;
 }
 .right-side {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 60%;
+  width: 100%;
 }
 
 .title {
-  height: 15%;
-  width: 92%;
 }
 
 .title-box {
@@ -118,15 +116,11 @@ body {
 
 .reviews {
   width: 92%;
-  height: 75%;
-  overflow-y: auto;
   padding-right: 10px;
 }
 
 .photos {
-  width: 90%;
-  height: 90%;
-  overflow-y: auto;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,18 +128,19 @@ body {
 }
 
 .photo-box {
-  width: 200px;
-  height: 200px;
+  width: 98%;
+  height: 500px;
+  margin-top: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .details-img {
-  width: 190px;
-  height: 190px;
+  width: 98%;
+  height: 98%;
   object-fit: cover;
-  box-shadow: 2px 2px 3px rgb(96, 36, 118);
+  box-shadow: 2px 2px 3px var(--fancy-shadow-colour);
 }
 
 ::-webkit-scrollbar {
@@ -161,6 +156,73 @@ body {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 16px;
-  background-color: rgb(123, 159, 169);
-  outline: 1px solid rgb(95, 109, 161);
+  background-color: var(--main-colour);
+  outline: 1px solid var(--secondary-colour);
+}
+
+.search-section {
+  text-align: center;
+  background-color: var(--main-colour);
+  box-shadow: 4px 5px 10px var(--secondary-colour),
+    -4px 5px 10px var(--secondary-colour);
+  padding: 20px;
+}
+
+@media (max-height: 600px) {
+  button {
+    height: 20px;
+  }
+
+  .container {
+    overflow-y: initial;
+    flex-direction: initial;
+    height: 80%;
+  }
+
+  .left-side {
+    width: 40%;
+    height: 100%;
+  }
+
+  .right-side {
+    width: 60%;
+    height: 100%;
+  }
+
+  .photos {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .photo-box {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: initial;
+  }
+
+  .details-img {
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    box-shadow: 2px 2px 3px var(--fancy-shadow-colour);
+  }
+
+  .reviews {
+    width: 92%;
+    height: 75%;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+
+  .title {
+    height: 15%;
+    width: 92%;
+  }
 }

@@ -20,7 +20,7 @@
                     $_SESSION["id"] = $result["id"];
                     $_SESSION["name"] = $result["氏名"];
 
-                    header("Location: search.php");
+                    header("Location: main.php");
                     exit(); 
                 }
                 else {

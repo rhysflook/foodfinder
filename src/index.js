@@ -1,6 +1,6 @@
 import { addToFavourites, getUser, init, setupFavButton } from './utils.js';
 
-var isLocal = window.location.href.includes('localhost');
+var isLocal = false;
 
 const initMap = () => {
   init(() => {
@@ -19,15 +19,15 @@ const saveSearch = (content) => {
     id: Number(localStorage.getItem('user')),
     content,
     date: Math.floor(Date.now() / 1000),
+    type: 'address',
   });
 };
 
 const geoCallback = (results, status) => {
   if (status === 'OK') {
-    console.log(results);
     const coords = new google.maps.LatLng(
-      results[0].geometry.location.lat,
-      results[0].geometry.location.lng
+      results[0].geometry.location.lat(),
+      results[0].geometry.location.lng()
     );
     const distanceField = document.getElementById('distance');
     const request = {
@@ -35,7 +35,7 @@ const geoCallback = (results, status) => {
       radius: distanceField.value * 1000,
       type: ['restaurant'],
     };
-    search(request);
+    search(request, displayResults);
   } else {
     alert('Geocode was not successful for the following reason: ' + status);
   }
@@ -47,7 +47,7 @@ const localGeo = async () => {
   geoCallback(results, status);
 };
 
-const setupRequest = (location) => {
+export const setupRequest = (location) => {
   if (isLocal) {
     localGeo();
   } else {
@@ -56,23 +56,27 @@ const setupRequest = (location) => {
   }
 };
 
-const search = (request) => {
+export const search = (request, callback) => {
   const service = new google.maps.places.PlacesService(
     document.createElement('div')
   );
   service.nearbySearch(request, (results, status) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-      const resultArea = document.getElementById('results');
-      results.forEach((result) => {
-        resultArea.appendChild(createRow(result));
-        setupDetailsButton(result.place_id);
-        setupFavButton(result.place_id);
-      });
+      callback(results);
     }
   });
 };
 
-const createRow = (result) => {
+const displayResults = (results) => {
+  const resultArea = document.getElementById('results');
+  results.forEach((result) => {
+    resultArea.appendChild(createRow(result));
+    setupDetailsButton(result.place_id);
+    setupFavButton(result.place_id);
+  });
+};
+
+export const createRow = (result) => {
   const row = document.createElement('div');
   row.className = 'row-item';
   row.innerHTML = `
@@ -95,13 +99,13 @@ const createRow = (result) => {
 const getPhoto = (photos) => {
   return photos !== undefined
     ? `<img class="row-img" src="${photos[0].getUrl({
-        maxWidth: 200,
-        maxHeight: 200,
+        maxWidth: 120,
+        maxHeight: 120,
       })}">`
     : '';
 };
 
-const setupDetailsButton = (id) => {
+export const setupDetailsButton = (id) => {
   const button = document.getElementById(id);
   button.addEventListener(
     'click',

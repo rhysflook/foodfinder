@@ -46,7 +46,7 @@ const getStoreDetails = () => {
         photoFrame.className = 'photo-box';
         const storePhoto = document.createElement('img');
         storePhoto.className = 'details-img';
-        storePhoto.src = photo.getUrl({ maxWidth: 300, maxHeight: 300 });
+        storePhoto.src = photo.getUrl({ maxWidth: 600, maxHeight: 600 });
         photoFrame.appendChild(storePhoto);
         photos.appendChild(photoFrame);
       });
@@ -58,5 +58,4 @@ const getCode = () => {
   return params.split('=')[1];
 };
 
-window.initMap = initMap;
 initMap();
