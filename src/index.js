@@ -9,7 +9,16 @@ const initMap = () => {
 
     searchBtn.addEventListener('click', () => {
       setupRequest(addressBar.value);
+      saveSearch(addressBar.value);
     });
+  });
+};
+
+const saveSearch = (content) => {
+  axios.post('./userSearchRecord.php', {
+    id: Number(localStorage.getItem('user')),
+    content,
+    date: Math.floor(Date.now() / 1000),
   });
 };
 
