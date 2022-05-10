@@ -8,7 +8,7 @@
 }
 
 html {
-  height: 100%;
+  /* height: 100%; */
   font-family: 'Nunito', sans-serif;
 }
 
@@ -26,11 +26,47 @@ body {
     ); */
   background-color: var(--bg-colour);
 
-  height: 100%;
+  /* height: 100%; */
+}
+
+h1 {
+  line-height: 0.5em;
+  margin-top: 40px;
+}
+
+input {
+  border-radius: 15px;
+  margin: 5px 0 5px 15px;
+}
+
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+.search {
+  font-size: 1.5em;
+  width: auto;
+  background-color: whitesmoke;
+  box-shadow: 3px 3px 5px var(--secondary-colour);
+  border: none;
+  border-radius: 15px;
+  margin-top: 20px;
+  padding: 5px 20px;
+}
+
+.show-section {
+  text-align: right;
+}
+
+.show-button {
+  border: initial;
+  background-color: initial;
 }
 
 .like-button {
   margin-left: 10px;
+  padding-right: 10px;
 }
 
 .like-button:hover {
@@ -42,33 +78,96 @@ body {
     3px -3px 5px red;
 }
 
+.search-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .row-item {
+  width: 95%;
   color: var(--tertiary-colour);
   background-color: var(--main-colour);
   box-shadow: 4px 4px 4px var(--secondary-colour);
-  padding: 20px;
-  margin: 20px;
+  margin: 10px auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
 
-.store-name {
-  width: 200px;
+.directions {
+  width: 95%;
+  margin: auto;
+  text-align: center;
 }
 
-.row-item .rating,
-.row-item .status {
-  width: 10%;
+.details-lower {
+  width: calc(100% - 80px);
+  display: flex;
+  flex-direction: column;
+}
+
+.store-info {
+  display: flex;
+  width: 95%;
+  margin: auto;
+}
+
+.store-name {
+  text-align: center;
+  width: 80%;
+}
+
+.store-name h3 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.8em;
+}
+
+.rating,
+.status {
+  font-size: 0.6em;
+}
+
+.address {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.8em;
+}
+
+.results {
+  width: 100%;
 }
 
 .row-img {
-  width: 120px;
-  height: 120px;
+  object-fit: cover;
+  width: 80px;
+  height: 80px;
+}
+
+.details-button {
+  height: 30px;
+  width: auto;
+  background-color: whitesmoke;
+  box-shadow: 3px 3px 5px var(--secondary-colour);
+  border: none;
+  border-radius: 100%;
+}
+
+.fine-details {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .review-content {
   font-size: 0.8em;
+  padding: 0 10px;
 }
 
 .container {
@@ -76,13 +175,18 @@ body {
   box-shadow: 5px 5px 10px var(--fancy-shadow-colour) inset;
   background-color: var(--detail-page-colour);
   width: 90%;
-  height: auto;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   justify-content: center;
   margin: auto;
   align-items: center;
-  overflow-y: scroll;
+}
+
+.review-hidden {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--fancy-shadow-colour);
 }
 
 .left-side {
@@ -101,6 +205,25 @@ body {
 }
 
 .title {
+  width: 100%;
+  text-align: left;
+}
+
+.rating-box {
+  padding-left: 35px;
+}
+
+.seperator {
+  border: 1px var(--fancy-shadow-colour) solid;
+  border-radius: 50px;
+  width: 80%;
+  margin: auto;
+  height: 1px;
+  background-color: var(--fancy-shadow-colour);
+}
+
+.title h2 {
+  font-size: 1.5em;
 }
 
 .title-box {
@@ -109,14 +232,18 @@ body {
 }
 
 .upper-box {
+  padding-left: 35px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
 }
 
 .reviews {
-  width: 92%;
-  padding-right: 10px;
+  width: 100%;
+}
+
+.author {
+  font-size: 0.9em;
+  padding: 0 10px;
 }
 
 .photos {
@@ -128,9 +255,9 @@ body {
 }
 
 .photo-box {
-  width: 98%;
-  height: 500px;
-  margin-top: 15px;
+  width: 95%;
+  height: 300px;
+  margin-top: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,21 +288,24 @@ body {
 }
 
 .search-section {
+  width: 95%;
+  font-size: 1em;
   text-align: center;
   background-color: var(--main-colour);
   box-shadow: 4px 5px 10px var(--secondary-colour),
     -4px 5px 10px var(--secondary-colour);
-  padding: 20px;
+  padding-bottom: 20px;
+  margin-top: 10px;
 }
 
-@media (max-height: 600px) {
+@media (min-width: 600px) {
   button {
     height: 20px;
   }
 
   .container {
-    overflow-y: initial;
-    flex-direction: initial;
+    overflow-y: hidden;
+    flex-direction: row;
     height: 80%;
   }
 
@@ -187,6 +317,7 @@ body {
   .right-side {
     width: 60%;
     height: 100%;
+    overflow-y: auto;
   }
 
   .photos {

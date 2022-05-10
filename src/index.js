@@ -77,30 +77,43 @@ const displayResults = (results) => {
 };
 
 export const createRow = (result) => {
+  console.log(result);
   const row = document.createElement('div');
   row.className = 'row-item';
   row.innerHTML = `
     <div class="store-name">
-      <h3>${result.name}</h3>
-      ${getPhoto(result.photos)}
+      <h3><span class="status">${
+        result.open_now ? 'Open' : 'Closed'
+      }</span> -- ${result.name}</h3>
     </div>
-    <p class="status">${result.open_now ? 'Open' : 'Closed'}</p>
-    <p class="rating">${result.rating} / 5</p>
-    <div class="directions">
-      <p class="address">${result.vicinity}</p>
+      <div class="store-info">
+        ${getPhoto(result.photos)}
+        <div class="details-lower">
+          <div class="directions">
+          <p class="address">${result.vicinity}</p>
+          </div>
+          <div class="fine-details">
+          <p class="rating">${
+            result.rating === undefined
+              ? 'No reviews'
+              : result.rating + ' / 5 ☆'
+          }</p>
+          <button class="details-button" id="${result.place_id}">詳細</button>
+          <p class="like-button" id="favourites-${result.place_id}"><3</p>
+        </div>
+      </div>
     </div>
-    <button id="${result.place_id}">Details</button>
-    <p class="like-button" id="favourites-${result.place_id}"><3</p>
   `;
 
   return row;
 };
 
 const getPhoto = (photos) => {
+  const size = window.innerWidth <= 600 ? 80 : 120;
   return photos !== undefined
     ? `<img class="row-img" src="${photos[0].getUrl({
-        maxWidth: 120,
-        maxHeight: 120,
+        maxWidth: size,
+        maxHeight: size,
       })}">`
     : '';
 };
