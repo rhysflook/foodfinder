@@ -1,16 +1,18 @@
-import { search, createRow, setupDetailsButton } from './index.js';
+import {
+  search,
+  createRow,
+  setupDetailsButton,
+  setupDirections,
+} from './index.js';
 import { setupFavButton } from './utils.js';
 
 const google = document.getElementById('google');
-console.log(google);
 google.addEventListener('load', () => {
-  console.log('loaded');
   axios
     .get('./getSearchHistory.php/' + localStorage.getItem('user'))
     .then((res) => {
       const randomRes = res.data[Math.floor(Math.random() * res.data.length)];
       if (randomRes.type === 'address') {
-        console.log(randomRes);
         const geocoder = new google.maps.Geocoder();
         geocoder.geocode({ address: randomRes.content }, geoCallback);
       }
@@ -50,5 +52,6 @@ const displayBestRated = (results) => {
     resultArea.appendChild(createRow(result));
     setupDetailsButton(result.place_id);
     setupFavButton(result.place_id);
+    setupDirections(`map-${result.place_id}`, result.name);
   });
 };

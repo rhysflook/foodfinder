@@ -1,4 +1,5 @@
-import { addToFavourites, getUser, init, setupFavButton } from './utils.js';
+import { Place } from './place.js';
+import { init, setupFavButton } from './utils.js';
 
 var isLocal = false;
 
@@ -69,53 +70,15 @@ export const search = (request, callback) => {
 
 const displayResults = (results) => {
   const resultArea = document.getElementById('results');
+
+  const size = window.innerWidth <= 600 ? 80 : 120;
   results.forEach((result) => {
-    resultArea.appendChild(createRow(result));
+    const place = new Place(result, size);
+    resultArea.appendChild(place.createRow());
     setupDetailsButton(result.place_id);
     setupFavButton(result.place_id);
+    setupDirections(`map-${result.place_id}`, result.name);
   });
-};
-
-export const createRow = (result) => {
-  console.log(result);
-  const row = document.createElement('div');
-  row.className = 'row-item';
-  row.innerHTML = `
-    <div class="store-name">
-      <h3><span class="status">${
-        result.open_now ? 'Open' : 'Closed'
-      }</span> -- ${result.name}</h3>
-    </div>
-      <div class="store-info">
-        ${getPhoto(result.photos)}
-        <div class="details-lower">
-          <div class="directions">
-          <p class="address">${result.vicinity}</p>
-          </div>
-          <div class="fine-details">
-          <p class="rating">${
-            result.rating === undefined
-              ? 'No reviews'
-              : result.rating + ' / 5 ☆'
-          }</p>
-          <button class="details-button" id="${result.place_id}">詳細</button>
-          <p class="like-button" id="favourites-${result.place_id}"><3</p>
-        </div>
-      </div>
-    </div>
-  `;
-
-  return row;
-};
-
-const getPhoto = (photos) => {
-  const size = window.innerWidth <= 600 ? 80 : 120;
-  return photos !== undefined
-    ? `<img class="row-img" src="${photos[0].getUrl({
-        maxWidth: size,
-        maxHeight: size,
-      })}">`
-    : '';
 };
 
 export const setupDetailsButton = (id) => {
@@ -124,6 +87,16 @@ export const setupDetailsButton = (id) => {
     'click',
     () => (window.location.href = `./details.php?code=${id}`)
   );
+};
+
+export const setupDirections = (id, name) => {
+  const url = `https://www.google.com/maps/dir/?api=1&destination=${name}&destination_place_id=${
+    id.split('-')[1]
+  }`;
+  const button = document.getElementById(id);
+  button.addEventListener('click', () => {
+    window.location.href = url;
+  });
 };
 
 initMap();

@@ -1,3 +1,4 @@
+import { setupDirections } from './index.js';
 import { init, setupFavButton } from './utils.js';
 
 const initMap = () => {
@@ -15,6 +16,7 @@ const getStoreDetails = () => {
     setupFavButton(getCode());
     renderReviews(results);
     renderPhotos(results);
+    setupDirections(`map-${results.place_id}`, results.name);
   });
 };
 
@@ -25,6 +27,9 @@ const renderTitleSection = (results) => {
         <div class="title-box">
             <div class="upper-box">
               <h2>${name}</h2>
+              <img id="map-${
+                results.place_id
+              }" class="map-pointer" src="../images/map-pointer.png">
               <p class="like-button" id="favourites-${getCode()}"><3</p>
             </div>
             <div class="rating-box">

@@ -15,6 +15,7 @@ $callback = function ($values) {
 $sql = getConnection();
 $results = sendRequest(
     "SELECT * FROM searches WHERE user_id = ?",
+    // $_POST = json_decode(file_get_contents("php://input"),true);
     ["i", explode( 'php/', $_SERVER['REQUEST_URI'] )[1]]
 );
 
