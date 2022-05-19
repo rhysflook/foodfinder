@@ -11,7 +11,7 @@
 
             <div class="menu-items">
                 <button class="menu-button" id="search"><a href="./search.php">検索</a></button>
-                <button class="menu-button" id="favs"><a href="./kiniri.php">気に入り</a></button>
+                <button class="menu-button" id="favs"><a href="./kiniiri.php">気に入り</a></button>
             </div>
             <div class="rec" id="recommendations"></div>
         </div>
