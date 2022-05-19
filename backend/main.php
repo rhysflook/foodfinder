@@ -10,8 +10,8 @@
         <div class="menu-container">
 
             <div class="menu-items">
-                <button class="menu-button" id="search"><a href="./search.php">検索</a></button>
-                <button class="menu-button" id="favs"><a href="./kiniri.php">気に入り</a></button>
+            <a class="menu-button" href="./search.php"><button class="menu-button-inner" id="search">検索</button></a>
+            <a class="menu-button" href="./kiniri.php"><button class="menu-button-inner" id="favs">気に入り</button></a>
             </div>
             <div class="rec" id="recommendations"></div>
         </div>

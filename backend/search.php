@@ -21,6 +21,7 @@
                 <button id="search" class="search">検索</button>
             </div>
             <div id="results" class="results"></div>
+            <a href="https://lovepik.com/images/png-animal.html">Animal Png vectors by Lovepik.com</a>
         </div>
         <script type="module" src="../src/index.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -30,7 +31,6 @@
             defer
             >
         </script>
-
 
     </body>
 </html>

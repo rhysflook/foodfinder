@@ -61,12 +61,23 @@ a {
 
 .show-button {
   border: initial;
+  border-bottom: 1px dotted var(--fancy-shadow-colour);
   background-color: initial;
+  margin-right: 5px;
+}
+
+.map-pointer {
+  width: 20px;
+}
+
+.liked {
+  color: rgb(182, 50, 50);
 }
 
 .like-button {
   margin-left: 10px;
   padding-right: 10px;
+  user-select: none;
 }
 
 .like-button:hover {
@@ -295,14 +306,15 @@ a {
   box-shadow: 4px 5px 10px var(--secondary-colour),
     -4px 5px 10px var(--secondary-colour);
   padding-bottom: 20px;
-  margin-top: 10px;
+  margin: 10px 0 20px 0;
+}
+
+.search-container a {
+  font-size: 0.3em;
+  color: rgb(175, 194, 188);
 }
 
 @media (min-width: 600px) {
-  button {
-    height: 20px;
-  }
-
   .container {
     overflow-y: hidden;
     flex-direction: row;
@@ -355,5 +367,8 @@ a {
   .title {
     height: 15%;
     width: 92%;
+  }
+  .search-container {
+    width: 65%;
   }
 }
