@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+session_start();
+
+?>
 <html>
     <head>
         <title>Menu</title>
@@ -11,7 +15,7 @@
 
             <div class="menu-items">
             <a class="menu-button" href="./search.php"><button class="menu-button-inner" id="search">検索</button></a>
-            <a class="menu-button" href="./kiniri.php"><button class="menu-button-inner" id="favs">気に入り</button></a>
+            <a class="menu-button" href="./kiniiri.php"><button class="menu-button-inner" id="favs">気に入り</button></a>
             </div>
             <div class="rec" id="recommendations"></div>
         </div>

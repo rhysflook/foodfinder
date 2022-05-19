@@ -110,6 +110,7 @@ export function Place(results, size) {
   this.size = size;
   this.id = results.place_id;
   this.name = results.name;
+  console.log(this.favourites)
   this.isLiked = this.favourites.includes(this.results.place_id);
 }
 

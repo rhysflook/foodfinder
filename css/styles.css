@@ -44,6 +44,10 @@ a {
   text-decoration: inherit; /* no underline */
 }
 
+.shop {
+  width: 100%;
+}
+
 .search {
   font-size: 1.5em;
   width: auto;

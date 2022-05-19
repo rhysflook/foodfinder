@@ -52,5 +52,8 @@
 パスワード：<input type="password" name="login_pass">　<input type="reset" value="クリア"><br>
 <input type="submit" value="ログイン">
 </form>
+<script>
+    localStorage.removeItem('user')
+</script>
 </body>
 </html>

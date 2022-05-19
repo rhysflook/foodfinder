@@ -1,4 +1,6 @@
-import { init } from './utils.js';
+import { setupDirections, setupDetailsButton } from './index.js';
+import { init, setupFavButton } from './utils.js';
+import { Place } from './place.js';
 
 const initMap = () => {
   init(() => {
@@ -12,9 +14,14 @@ const initMap = () => {
       
       //for loop
       for( var i = 0 ; i < el.length ; i++ ){
-
-      service.getDetails({ placeId: "ChIJY8vvgB_ecUgRoMp4F3uyzTM" }, (results, status) => {
-            console.log(results);
+        const size = window.innerWidth <= 600 ? 80 : 120;
+      service.getDetails({ placeId: el[i].id}, (results, status) => {
+        const resultArea = document.getElementById(results.place_id)
+        const place = new Place(results, size);
+        resultArea.appendChild(place.createRow());
+        setupDetailsButton(results.place_id);
+        setupFavButton(results.place_id);
+        setupDirections(`map-${results.place_id}`, results.name);
       });
     }
       // break;

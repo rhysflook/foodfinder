@@ -2,7 +2,6 @@
 
 <?php 
     session_start();
-
     if (true) {
         try {
             $dsn = "mysql:host=192.168.40.64;dbname=b202213;charset=utf8";
@@ -12,7 +11,7 @@
     
             $sql = "SELECT * FROM kiniiri WHERE user_id = :id";
             $st = $pdo->prepare( $sql );
-            $st->bindValue( ":id", 5, PDO::PARAM_INT );
+            $st->bindValue( ":id", $_SESSION['id'], PDO::PARAM_INT );
             $st->execute();
     
             $result = $st->fetchAll( PDO::FETCH_ASSOC );
@@ -34,13 +33,15 @@
 
 <html>
 <head>
+<link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+<div class="search-container">
 	<?php foreach($_SESSION["kiniiri"] as $key=>$value): ?>
    <div class="shop" id="<?php echo $value['google_id'] ?>">
-		<?= $value["google_id"] ?>
 	</div>
     <?php endforeach; ?>
+</div>
 	<script type="module" src="../src/kiniiri.js"></script>
 	<script
 	    id='google'
