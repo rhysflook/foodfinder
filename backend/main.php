@@ -1,31 +1,42 @@
-<!DOCTYPE html>
 <?php
+namespace foodFinder;
+include "./navBar.php";
 session_start();
-
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Menu</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../css/menu.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Kosugi+Maru&family=Rampart+One&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="menu-container">
-
-            <div class="menu-items">
-            <a class="menu-button" href="./search.php"><button class="menu-button-inner" id="search">検索</button></a>
-            <a class="menu-button" href="./kiniiri.php"><button class="menu-button-inner" id="favs">気に入り</button></a>
-            </div>
-            <div class="rec" id="recommendations"></div>
+           <?php echo getMenuBar(isset($_SESSION['id']))?> 
         </div>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script type="module" src="../src/menu.js"></script>
-        <script
-        id='google'
-        defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxcVTM6J2AoRuhC6guYnS_B4_jAO78ctI&libraries=places"
-        >
+        <div class="welcome-msg">
+            <div>
+                <h3>～ようこそ　食の世界へ～</h3>
+                <p>どんなたべものをたべたい？</p>
+                <p>何がたべたい？</p>
+                <p>一緒に探しませんか？</p>
+            </div>
+        </div>
+        <div class="welcome-msg">
+            <img class="food" src="../images/bibimbap.png">
+            <button id="get-food" class="go-btn lrg">探そう！</button>
+        </div>
+        <!-- <div class="bottom"></div> -->
+
+    <script src="../src/navMenu.js"></script>
+    <script>
+        document.getElementById('get-food').addEventListener('click', () => {
+            window.location.href = './search.php'
+        })
     </script>
     </body>
 </html>

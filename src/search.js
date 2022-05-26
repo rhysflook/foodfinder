@@ -2,13 +2,32 @@ import { Place } from './place.js';
 import { init, setupFavButton } from './utils.js';
 
 var isLocal = false;
-
+console.log('yo');
 const initMap = () => {
   init(() => {
     const addressBar = document.getElementById('address');
-    const searchBtn = document.getElementById('search');
-
+    const searchBtn = document.getElementById('find-food');
+    console.log(searchBtn);
     searchBtn.addEventListener('click', () => {
+      const results = document.getElementById('results');
+      results.innerHTML = '';
+      if (window.innerWidth <= 600) {
+        const srchBox = document.getElementById('srch');
+        srchBox.style.display = 'none';
+        const area = document.getElementById('srch-area');
+        const newBtn = document.createElement('button');
+        newBtn.innerText = 'もう一回';
+        newBtn.className = 'go-btn med';
+        newBtn.style.display = 'none';
+        newBtn.id = 'again-btn';
+        newBtn.addEventListener('click', () => {
+          const results = document.getElementById('results');
+          results.innerHTML = '';
+          srchBox.style.display = 'flex';
+          newBtn.remove();
+        });
+        area.appendChild(newBtn);
+      }
       setupRequest(addressBar.value);
       saveSearch(addressBar.value);
     });
@@ -75,31 +94,14 @@ const displayResults = (results) => {
   results.forEach((result) => {
     const place = new Place(result, size);
     resultArea.appendChild(place.createRow());
-    setupDetailsButton(result.place_id);
-    setupFavButton(result.place_id);
-    setupDirections(`map-${result.place_id}`, result.name);
+    place.setupElement();
   });
+  document.getElementById('again-btn').style.display = 'initial';
 };
 
-export const setupDetailsButton = (id) => {
-  const button = document.getElementById(id);
-  button.addEventListener(
-    'click',
-    () => (window.location.href = `./details.php?code=${id}`)
-  );
-};
-
-export const setupDirections = (id, name) => {
-  const url = `https://www.google.com/maps/dir/?api=1&destination=${name}&destination_place_id=${
-    id.split('-')[1]
-  }`;
-  const button = document.getElementById(id);
-  button.addEventListener('click', () => {
-    window.location.href = url;
-  });
-};
-
-initMap();
+if (window.location.pathname.includes('search')) {
+  initMap();
+}
 
 // getUser(() => {
 //   initMap();

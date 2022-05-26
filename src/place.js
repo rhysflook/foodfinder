@@ -103,6 +103,34 @@ const placePrototype = {
   updateFavourites() {
     localStorage.setItem('favourites', JSON.stringify(this.favourites));
   },
+
+  setupElement() {
+    this.setupDetailsButton();
+    this.setupDirections();
+    this.setupFavourites();
+  },
+  setupZoomedImage(image, src) {
+    image.addEventListener('click', () => {
+      const photoArea = document.getElementById('photos');
+      const zoomedImg = document.createDocumentFragment();
+      const photo = document.createElement('div');
+      photo.className = 'zoomed-img-box';
+      photo.innerHTML = `
+
+        <div class="lrg-photo-inner">
+        <img class="zoomed-img" src="${src({
+          maxWidth: 500,
+          maxHeight: 500,
+        })}" alt="lrg-img-from-restaurant">
+        <button class="close-button" id="close-button">✕</button>
+        </div>
+      `;
+      zoomedImg.appendChild(photo);
+      photoArea.appendChild(zoomedImg);
+      // console.log(this.favourites);
+      addCloseButton(photo);
+    });
+  },
 };
 
 export function Place(results, size) {
@@ -110,9 +138,16 @@ export function Place(results, size) {
   this.size = size;
   this.id = results.place_id;
   this.name = results.name;
-  console.log(this.favourites)
+
   this.isLiked = this.favourites.includes(this.results.place_id);
 }
+
+const addCloseButton = (image) => {
+  console.log('ypo');
+  document.getElementById('close-button').addEventListener('click', () => {
+    image.remove();
+  });
+};
 
 Place.prototype = placePrototype;
 Place.prototype.constructor = Place;

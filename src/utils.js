@@ -1,7 +1,3 @@
-export const addToFavourites = (userId, googleId) => {
-  axios.post('./addToFavourites.php', { user_id: userId, google_id: googleId });
-};
-
 export const init = (callback) => {
   const google = document.getElementById('google');
   google.addEventListener('load', () => {
@@ -20,11 +16,10 @@ export const getUser = (callback) => {
           'favourites',
           JSON.stringify(parseFavourites(res.data.favourites))
         );
+        localStorage.setItem('name', res.data.name);
         callback();
       })
-      .catch(() => {
-        window.location.href = 'login.php';
-      });
+      .catch(() => {});
   } else {
     callback();
   }

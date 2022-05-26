@@ -1,21 +1,19 @@
 :root {
-  --main-colour: rgb(175, 196, 201);
+  --main-colour: rgb(251, 224, 181);
   --secondary-colour: rgb(95, 109, 161);
   --tertiary-colour: rgb(95, 109, 161);
   --detail-page-colour: rgb(182, 219, 216);
   --fancy-shadow-colour: rgb(96, 36, 118);
-  --bg-colour: rgb(214, 231, 228);
+  --bg-colour: rgb(249, 203, 118);
 }
 
 html {
-  /* height: 100%; */
+  height: 100%;
   font-family: 'Nunito', sans-serif;
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: 'Kosugi Maru', sans-serif;
   color: rgb(40, 37, 31);
   margin: 0;
   /* background: linear-gradient(
@@ -24,24 +22,96 @@ body {
       var(--secondary-colour),
       var(--main-colour)
     ); */
-  background-color: var(--bg-colour);
-
-  /* height: 100%; */
+  background: rgb(249, 203, 118);
+  background: linear-gradient(
+    133deg,
+    rgba(229, 137, 10, 1) 0%,
+    rgba(247, 208, 138, 1) 30%,
+    rgba(244, 232, 215, 1) 100%
+  );
+  height: 100%;
 }
-
 h1 {
   line-height: 0.5em;
   margin-top: 40px;
 }
 
-input {
-  border-radius: 15px;
-  margin: 5px 0 5px 15px;
-}
-
 a {
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
+}
+
+/* login page */
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+}
+
+.hl {
+  border-top: 3px solid rgb(52, 84, 190);
+  width: 100%;
+  margin: 20px 0;
+}
+
+/* imgs */
+
+.lrg-img {
+  width: 300px;
+  margin: 30px;
+}
+.fixed {
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* page headers */
+
+.page-title {
+  color: rgb(52, 84, 190);
+  font-size: 1.9em;
+  margin: 30px 0 0 50px;
+}
+
+/* button sizes */
+
+.lrg {
+  width: 300px;
+  height: 100px;
+  font-size: 1.6em;
+}
+
+.med {
+  margin: 10px;
+  width: 200px;
+  height: 60px;
+  font-size: 1.3em;
+}
+/*  */
+
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+
+.input-box {
+  font-size: 1.5em;
+  height: 50px;
+  font-family: 'Kosugi Maru', sans-serif;
+  margin: 10px 30px;
 }
 
 .shop {
@@ -68,10 +138,6 @@ a {
   border-bottom: 1px dotted var(--fancy-shadow-colour);
   background-color: initial;
   margin-right: 5px;
-}
-
-.map-pointer {
-  width: 20px;
 }
 
 .liked {
@@ -156,7 +222,9 @@ a {
 }
 
 .results {
-  width: 100%;
+  width: 50%;
+  max-height: 75vh;
+  overflow-y: auto;
 }
 
 .row-img {
@@ -180,11 +248,6 @@ a {
   align-items: center;
 }
 
-.review-content {
-  font-size: 0.8em;
-  padding: 0 10px;
-}
-
 .container {
   border-radius: 15px;
   box-shadow: 5px 5px 10px var(--fancy-shadow-colour) inset;
@@ -195,94 +258,6 @@ a {
   justify-content: center;
   margin: auto;
   align-items: center;
-}
-
-.review-hidden {
-  width: 100%;
-  height: 120px;
-  overflow: hidden;
-  border-bottom: 1px solid var(--fancy-shadow-colour);
-}
-
-.left-side {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-.right-side {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.title {
-  width: 100%;
-  text-align: left;
-}
-
-.rating-box {
-  padding-left: 35px;
-}
-
-.seperator {
-  border: 1px var(--fancy-shadow-colour) solid;
-  border-radius: 50px;
-  width: 80%;
-  margin: auto;
-  height: 1px;
-  background-color: var(--fancy-shadow-colour);
-}
-
-.title h2 {
-  font-size: 1.5em;
-}
-
-.title-box {
-  display: flex;
-  flex-direction: column;
-}
-
-.upper-box {
-  padding-left: 35px;
-  display: flex;
-  align-items: center;
-}
-
-.reviews {
-  width: 100%;
-}
-
-.author {
-  font-size: 0.9em;
-  padding: 0 10px;
-}
-
-.photos {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.photo-box {
-  width: 95%;
-  height: 300px;
-  margin-top: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.details-img {
-  width: 98%;
-  height: 98%;
-  object-fit: cover;
-  box-shadow: 2px 2px 3px var(--fancy-shadow-colour);
 }
 
 ::-webkit-scrollbar {
@@ -303,9 +278,15 @@ a {
 }
 
 .search-section {
-  width: 95%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
   font-size: 1em;
   text-align: center;
+  color: rgb(52, 84, 190);
   background-color: var(--main-colour);
   box-shadow: 4px 5px 10px var(--secondary-colour),
     -4px 5px 10px var(--secondary-colour);
@@ -313,66 +294,44 @@ a {
   margin: 10px 0 20px 0;
 }
 
+.sm-img {
+  width: 100px;
+}
+
+.med-img {
+  width: 150px;
+}
+
+.table {
+  margin-bottom: 0;
+  display: block;
+}
+
 .search-container a {
   font-size: 0.3em;
   color: rgb(175, 194, 188);
 }
 
-@media (min-width: 600px) {
-  .container {
-    overflow-y: hidden;
-    flex-direction: row;
-    height: 80%;
-  }
+.cat-meal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  .left-side {
-    width: 40%;
-    height: 100%;
-  }
+.search-bottom {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.input-type {
+  margin: 20px;
+}
 
-  .right-side {
-    width: 60%;
-    height: 100%;
-    overflow-y: auto;
-  }
-
-  .photos {
+@media (max-width) {
+  .search-section {
+    height: initial;
     width: 90%;
-    height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .photo-box {
-    width: 200px;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: initial;
-  }
-
-  .details-img {
-    width: 190px;
-    height: 190px;
-    object-fit: cover;
-    box-shadow: 2px 2px 3px var(--fancy-shadow-colour);
-  }
-
-  .reviews {
-    width: 92%;
-    height: 75%;
-    overflow-y: auto;
-    padding-right: 10px;
-  }
-
-  .title {
-    height: 15%;
-    width: 92%;
-  }
-  .search-container {
-    width: 65%;
   }
 }

@@ -1,5 +1,6 @@
-import { setupDirections } from './index.js';
+import { Place } from './place.js';
 import { init, setupFavButton } from './utils.js';
+document.body.style.height = 'initial';
 
 const initMap = () => {
   init(() => {
@@ -12,11 +13,13 @@ const getStoreDetails = () => {
     document.createElement('div')
   );
   service.getDetails({ placeId: getCode() }, (results, status) => {
+    const size = window.innerWidth <= 600 ? 80 : 120;
+    const place = new Place(results, size);
     renderTitleSection(results);
-    setupFavButton(getCode());
+    place.setupFavourites();
+    place.setupDirections();
     renderReviews(results);
-    renderPhotos(results);
-    setupDirections(`map-${results.place_id}`, results.name);
+    renderPhotos(results, place);
   });
 };
 
@@ -62,7 +65,7 @@ const renderReviews = (results) => {
     });
 };
 
-const generateReview = (review) => {
+export const generateReview = (review) => {
   const { author_name, rating, text } = review;
   const userReview = document.createElement('div');
   userReview.className = 'user-review';
@@ -88,30 +91,55 @@ const setupOpenButton = () => {
   });
 };
 
-const renderPhotos = (results) => {
+const renderPhotos = (results, place) => {
   const photos = document.getElementById('photos');
+  const firstRow = createPhotoRow();
+  const secondRow = createPhotoRow();
+  const numOfPhotos = results.photos ? results.photos.length : 0;
   results.photos !== undefined &&
-    results.photos.forEach((photo) => {
-      photos.appendChild(generatePhoto(photo));
+    results.photos.forEach((photo, index) => {
+      if (index < results.photos.length / 2) {
+        firstRow.appendChild(generatePhoto(photo, place.setupZoomedImage));
+      } else {
+        secondRow.appendChild(generatePhoto(photo, place.setupZoomedImage));
+      }
     });
+  if (numOfPhotos % 2 !== 0) {
+    const catPhoto = document.createElement('img');
+    catPhoto.className = 'details-img';
+    catPhoto.src = '../images/no-pic.png';
+    secondRow.appendChild(catPhoto);
+  }
+  photos.appendChild(firstRow);
+  photos.appendChild(secondRow);
 };
 
-const generatePhoto = (photo) => {
+const createPhotoRow = () => {
+  const row = document.createElement('div');
+  row.className = 'photo-row';
+  return row;
+};
+
+const generatePhoto = (photo, zoomFunc) => {
   const photoFrame = document.createElement('div');
+  zoomFunc(photoFrame, photo.getUrl);
   photoFrame.className = 'photo-box';
   const storePhoto = document.createElement('img');
   storePhoto.className = 'details-img';
   storePhoto.src = photo.getUrl({
-    maxWidth: window.innerWidth < 600 ? 600 : 200,
-    maxHeight: window.innerWidth < 600 ? 600 : 200,
+    maxWidth: 600,
+    maxHeight: 600,
   });
+
   photoFrame.appendChild(storePhoto);
   return photoFrame;
 };
 
-const getCode = () => {
+export const getCode = () => {
   const params = window.location.search;
   return params.split('=')[1];
 };
+
+const addReview = () => {};
 
 initMap();

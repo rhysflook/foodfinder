@@ -1,9 +1,9 @@
 <?php
     session_start();
     if (isset($_SESSION['id'])) {
-        $dsn = "mysql:host=192.168.40.64;dbname=b202213;charset=utf8";
-        $u = "rhys";
-        $p = "pass";
+        $dsn = "mysql:host=127.0.0.1;dbname=b2022C;charset=utf8";
+        $u = "b2022";
+        $p = "dB4bApUK";
         $pdo = new PDO( $dsn, $u, $p );
         $sql = "SELECT * from kiniiri WHERE user_id = :user_id";
         $st = $pdo->prepare($sql);
@@ -11,7 +11,7 @@
         $st->execute();
         $result = $st->fetchAll();
 
-            echo json_encode(['user'=> $_SESSION['id'], 'favourites'=>$result]);
+            echo json_encode(['user'=> $_SESSION['id'], 'name'=>$_SESSION['name'], 'favourites'=>$result]);
 
     } else {
         header("HTTP/1.0 400 Bad Request");

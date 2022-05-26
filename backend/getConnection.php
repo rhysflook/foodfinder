@@ -2,7 +2,7 @@
 namespace foodFinder;
 
 function getConnection() {
-    return new \mysqli("192.168.40.64", "rhys", "pass", "b202213");
+    return new \mysqli("127.0.0.1", "b2022", "dB4bApUK", "b2022C");
 }
 
 function sendRequest($sql, $params) {

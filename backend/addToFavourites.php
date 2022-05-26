@@ -3,9 +3,9 @@ session_start();
 $_POST = json_decode(file_get_contents("php://input"),true);
 try {
 
-    $dsn = "mysql:host=192.168.40.64;dbname=b202213;charset=utf8";
-    $u = "rhys";
-    $p = "pass";
+    $dsn = "mysql:host=127.0.0.1;dbname=b2022C;charset=utf8";
+    $u = "b2022";
+    $p = "dB4bApUK";
     $pdo = new PDO( $dsn, $u, $p );
 
     

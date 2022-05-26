@@ -1,0 +1,249 @@
+.usr-reviews {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+}
+
+.title-section {
+  width: 40%;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  color: rgb(52, 84, 190);
+  background-color: var(--main-colour);
+  box-shadow: 4px 5px 10px var(--secondary-colour),
+    -4px 5px 10px var(--secondary-colour);
+  height: 75vh;
+}
+
+.upper-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviews {
+  /* width: 30%; */
+}
+
+.details-section {
+  width: 100%;
+  justify-content: center;
+  /* align-items: center; */
+  display: flex;
+}
+
+.map-pointer {
+  width: 20px;
+  height: 25px;
+  margin: 0 10px;
+}
+
+.photo-row {
+  display: flex;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.details-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  box-shadow: 2px 2px 3px var(--fancy-shadow-colour);
+}
+
+.reviews {
+  width: 80%;
+  border: 1px solid rgb(144, 123, 2);
+}
+
+.author {
+  font-size: 0.9em;
+  padding: 0 10px;
+}
+
+.rating-box {
+  text-align: center;
+  width: 100%;
+}
+.zoomed-img-box {
+  position: absolute;
+  width: 95%;
+  top: -80px;
+}
+
+.lrg-photo-inner {
+  border-radius: 15px;
+  display: inline-block;
+  width: 100%;
+  height: 350px;
+  border: 2px outset rgb(208, 197, 213);
+  background-color: rgb(181, 170, 192);
+  box-shadow: -1px -1px 1px rgb(95, 109, 161);
+  position: relative;
+}
+
+.close-button {
+  z-index: 1;
+  position: absolute;
+  right: 17px;
+  top: 17px;
+}
+
+.zoomed-img {
+  display: block;
+  width: calc(100% - 30px);
+  min-height: 320px;
+  max-height: 320px;
+  object-fit: cover;
+  margin: 15px 15px 0;
+}
+
+.photos {
+  position: relative;
+}
+
+@media (min-width: 600px) {
+  .review-area {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .upper-box h2 {
+    font-size: 1.8em;
+    padding: 15px;
+  }
+
+  .photos-outer {
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .zoomed-img-box {
+    position: absolute;
+    width: 95%;
+    top: -80px;
+  }
+
+  .lrg-photo-inner {
+    border-radius: 15px;
+    display: inline-block;
+    width: 100%;
+    height: 350px;
+    border: 2px outset rgb(208, 197, 213);
+    background-color: rgb(181, 170, 192);
+    box-shadow: -1px -1px 1px rgb(95, 109, 161);
+    position: relative;
+  }
+
+  .close-button {
+    z-index: 1;
+    position: absolute;
+    right: 17px;
+    top: 17px;
+  }
+
+  .zoomed-img {
+    display: block;
+    width: calc(100% - 30px);
+    min-height: 320px;
+    max-height: 320px;
+    object-fit: cover;
+    margin: 15px 15px 0;
+  }
+
+  .container {
+    overflow-y: hidden;
+    flex-direction: row;
+    height: 80%;
+  }
+
+  .title-box {
+    height: 20%;
+  }
+
+  .left-side {
+    width: 40%;
+    height: 100%;
+  }
+
+  .user-reviews {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 75%;
+    justify-content: space-between;
+  }
+
+  .right-side {
+    width: 60%;
+    height: 100%;
+    overflow-y: auto;
+    justify-content: initial;
+  }
+
+  .reviews {
+    width: 80%;
+    height: 35%;
+    padding: 10px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 2px rgb(52, 84, 190);
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+    width: 92%;
+  }
+  .search-container {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  .photo-box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: initial;
+  }
+
+  .details-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    box-shadow: 2px 2px 3px var(--fancy-shadow-colour);
+  }
+}
+
+@media (max-width: 600px) {
+  .photo-box {
+    width: 95%;
+    height: 300px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .details-img {
+    width: 98%;
+    height: 98%;
+    object-fit: cover;
+    box-shadow: 2px 2px 3px var(--fancy-shadow-colour);
+  }
+}
+
+.deets {
+  width: 100%;
+}

@@ -1,10 +1,5 @@
-import {
-  search,
-  createRow,
-  setupDetailsButton,
-  setupDirections,
-} from './index.js';
-import { setupFavButton } from './utils.js';
+import { Place } from './place.js';
+import { search } from './search.js';
 
 const google = document.getElementById('google');
 google.addEventListener('load', () => {
@@ -47,11 +42,11 @@ const displayBestRated = (results) => {
 
   const topResults = results.length < 3 ? results : results.splice(0, 3);
 
-  const resultArea = document.getElementById('recommendations');
+  const resultArea = document.getElementById('results');
+  const size = window.innerWidth <= 600 ? 80 : 120;
   topResults.forEach((result) => {
-    resultArea.appendChild(createRow(result));
-    setupDetailsButton(result.place_id);
-    setupFavButton(result.place_id);
-    setupDirections(`map-${result.place_id}`, result.name);
+    const place = new Place(result, size);
+    resultArea.appendChild(place.createRow());
+    place.setupElement();
   });
 };
