@@ -2,7 +2,7 @@
 namespace foodFinder;
 
 function getConnection() {
-    if (str_contains($_SERVER['REQUEST_URI'], 'progress')) {
+    if ($_SERVER["HTTP_HOST"] === 'progress-it-school.net') {
 
         return new \mysqli("127.0.0.1", "b2022", "dB4bApUK", "b2022C");
     } else {
