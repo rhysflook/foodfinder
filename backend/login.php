@@ -1,20 +1,19 @@
 <?php
+namespace foodFinder;
+include "./getConAlt.php";
     session_start();
 
     if ( array_key_exists('login_id', $_POST) && $_POST['login_id'] !== '' ) {
         try {
-            $dsn = "mysql:host=127.0.0.1;dbname=b2022C;charset=utf8";
-            $u = "b2022";
-            $p = "dB4bApUK";
-            $pdo = new PDO( $dsn, $u, $p );
+            $pdo = sendConnection();
     
             $sql = "SELECT * FROM user WHERE 氏名 = :id";
             $st = $pdo->prepare( $sql );
-            $st->bindValue( ":id", $_POST["login_id"], PDO::PARAM_STR );
+            $st->bindValue( ":id", $_POST["login_id"], \PDO::PARAM_STR );
             $st->execute();
             
     
-            $result = $st->fetch( PDO::FETCH_ASSOC );
+            $result = $st->fetch( \PDO::FETCH_ASSOC );
             if ( $result ) {
                 if ( password_verify( $_POST["login_pass"], $result["パスワード"]) ) {
                     $_SESSION["id"] = $result["id"];
@@ -32,37 +31,35 @@
                 exit();            
             }
         }
-        catch ( Exception $e ) {
+        catch ( \Exception $e ) {
             echo "接続できませんでした。";
         }
     } else if (array_key_exists('new_id', $_POST) ) {
-        $dsn = "mysql:host=127.0.0.1;dbname=b2022C;charset=utf8";
-        $u = "b2022";
-        $p = "dB4bApUK";
-        $pdo = new PDO( $dsn, $u, $p );
+
+        $pdo = sendConnection();
         $sql = "SELECT * FROM user WHERE 氏名 = :id";
         $st = $pdo->prepare( $sql );
-        $st->bindValue( ":id", $_POST["new_id"], PDO::PARAM_STR );
+        $st->bindValue( ":id", $_POST["new_id"], \PDO::PARAM_STR );
         $st->execute();
         
 
-        $result = $st->fetch( PDO::FETCH_ASSOC );
+        $result = $st->fetch( \PDO::FETCH_ASSOC );
 
         if ($result) {
             echo 'Name already taken!';
         } else {
             $sql = "INSERT INTO user (氏名, パスワード) VALUES (:id, :pass)";
             $st = $pdo->prepare( $sql );
-            $st->bindValue( ":id", $_POST["new_id"], PDO::PARAM_STR );
+            $st->bindValue( ":id", $_POST["new_id"], \PDO::PARAM_STR );
             $st->bindValue(":pass", password_hash($_POST['new_pass'], PASSWORD_DEFAULT));
             $st->execute();
             $sql = "SELECT * FROM user WHERE 氏名 = :id";
             $st = $pdo->prepare( $sql );
-            $st->bindValue( ":id", $_POST["new_id"], PDO::PARAM_STR );
+            $st->bindValue( ":id", $_POST["new_id"], \PDO::PARAM_STR );
             $st->execute();
             
     
-            $result = $st->fetch( PDO::FETCH_ASSOC );
+            $result = $st->fetch( \PDO::FETCH_ASSOC );
             if ($result){
                 $_SESSION["id"] = $result["id"];
                 $_SESSION["name"] = $result["氏名"];

@@ -2,13 +2,12 @@
 namespace foodFinder;
 include "./navBar.php";
 include "./getScripts.php";
+include "./getConAlt.php";
 session_start();
 if (true) {
     try {
-        $dsn = "mysql:host=127.0.0.1;dbname=b2022C;charset=utf8";
-        $u = "b2022";
-        $p = "dB4bApUK";
-            $pdo = new \PDO( $dsn, $u, $p );
+
+            $pdo = sendConnection();
             
             $sql = "SELECT * FROM kiniiri WHERE user_id = :id";
             $st = $pdo->prepare( $sql );

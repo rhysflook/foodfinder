@@ -74,9 +74,11 @@ const placePrototype = {
         favs.splice(favs.indexOf(this.id), 1);
         localStorage.setItem('favourites', JSON.stringify(favs));
         button.classList.remove('liked');
+        this.isLiked = false;
       } else {
         this.addToFavourites(localStorage.getItem('user'), this.id);
         button.classList.add('liked');
+        this.isLiked = true;
       }
     });
   },
@@ -138,12 +140,13 @@ export function Place(results, size) {
   this.size = size;
   this.id = results.place_id;
   this.name = results.name;
-
+  if (this.favourites === null) {
+    placePrototype.favourites = JSON.parse(localStorage.getItem('favourites'));
+  }
   this.isLiked = this.favourites.includes(this.results.place_id);
 }
 
 const addCloseButton = (image) => {
-  console.log('ypo');
   document.getElementById('close-button').addEventListener('click', () => {
     image.remove();
   });

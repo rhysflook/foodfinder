@@ -1,8 +1,8 @@
 import { Place } from './place.js';
 import { search } from './search.js';
-import { init } from './utils.js';
 
-init(() => {
+const google = document.getElementById('google');
+google.addEventListener('load', () => {
   axios
     .get('./getSearchHistory.php/' + localStorage.getItem('user'))
     .then((res) => {

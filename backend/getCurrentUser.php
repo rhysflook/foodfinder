@@ -1,13 +1,13 @@
 <?php
+namespace foodFinder;
+include "./getConAlt.php";
     session_start();
     if (isset($_SESSION['id'])) {
-        $dsn = "mysql:host=127.0.0.1;dbname=b2022C;charset=utf8";
-        $u = "b2022";
-        $p = "dB4bApUK";
-        $pdo = new PDO( $dsn, $u, $p );
+
+        $pdo = sendConnection();
         $sql = "SELECT * from kiniiri WHERE user_id = :user_id";
         $st = $pdo->prepare($sql);
-        $st->bindValue(":user_id", $_SESSION['id'], PDO::PARAM_INT);
+        $st->bindValue(":user_id", $_SESSION['id'], \PDO::PARAM_INT);
         $st->execute();
         $result = $st->fetchAll();
 
