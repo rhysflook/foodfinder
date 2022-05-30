@@ -7,7 +7,7 @@ function getMenuBar($isLoggedIn) {
         <div>
             <img class="plate" src="../images/dish_3.png">
         </div>
-        <div id="menu-dd" class="menu-open">⁂</div>
+        <div id="menu-dd" class="menu-open"><img class="hamburger" src="../images/hamburger.png"></div>
         <div class="menu-items" id="nav">
             <button  class="menu-button" id="home" name="target" value="main">
             <div>

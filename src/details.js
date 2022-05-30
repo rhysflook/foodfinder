@@ -1,6 +1,10 @@
 import { Place } from './place.js';
 import { init, setupFavButton } from './utils.js';
-document.body.style.height = 'initial';
+
+if (window.innerWidth <= 600) {
+  document.documentElement.style.height = 'initial';
+  document.body.style.height = 'initial';
+}
 
 const initMap = () => {
   init(() => {

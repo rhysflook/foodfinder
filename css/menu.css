@@ -9,7 +9,7 @@
 .menu-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 95%;
   justify-content: center;
 }
 
@@ -133,8 +133,11 @@
   html,
   body {
     height: 100%;
+    width: 100%;
   }
-
+  .hamburger {
+    width: 50px;
+  }
   .photos {
     position: initial;
   }
@@ -170,7 +173,7 @@
     font-size: 1.3em;
     display: block;
     color: inherit;
-    margin-right: 20px;
+    /* margin-right: 20px; */
   }
 
   .menu-open:active {
@@ -259,7 +262,7 @@
 
   /* login page  */
   .page-title {
-    display: none;
+    font-size: 1.2em;
   }
 
   /* details page */

@@ -52,7 +52,7 @@ $reviews = $reviews->fetch_all();
            <div class="reviews" id="reviews"><h3>Google reviews</h3></div>
            <div class="reviews" id="site-reviews"><h3>Bariumasou reviews</h3>
            <?php if (count($reviews) == 0):?>
-            <p>No reviews to show!</p>
+            <p id="no-r">No reviews to show!</p>
           <?php endif;?>
            <?php foreach($reviews as $key=>$value): ?>
            <div class="user-review">

@@ -88,6 +88,8 @@ include "./getConAlt.php";
         <div class="flex-row">
             <div>
 
+                <div class="page-title"><h1>食べましょう！</h1>
+            </div>
                 <form method="post">
                     <div class="details">
                         
@@ -105,10 +107,7 @@ include "./getConAlt.php";
                     </div>
                 </form>
             </div>
-            <div class="page-title"><h1>食べましょう！</h1>
         
-            <img src="../images/pizza.png" class="lrg-img">
-        </div>
         </div>
     </div>
 <script>

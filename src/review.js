@@ -18,6 +18,10 @@ import { getCode, generateReview } from './details.js';
 
         const reviews = document.getElementById('site-reviews');
         reviews.appendChild(review);
+        const noR = document.getElementById('no-r');
+        if (noR) {
+          noR.remove();
+        }
         document.getElementById('review-area').remove();
       })
       .catch((err) => console.log(err));

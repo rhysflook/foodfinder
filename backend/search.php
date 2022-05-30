@@ -5,6 +5,7 @@
     session_start();
     if (!isset($_SESSION['id'])) {
         $_SESSION["page"] = "search";
+        header('location: ../index.php');
     }
     ?>
     <!DOCTYPE html>
@@ -27,7 +28,7 @@
                     <h1>住所検索</h1>
                     <div>
                         <input class="input-type" type="radio" name="search-type" value="1" checked>半径検索
-                        <input class="input-type"  type="radio" name="search-type" value="2">食類検索
+                        <input class="input-type"  type="radio" name="search-type" value="2" disabled="true">食類検索
                     </div>
                     <input class="input-box" type="text" id="address" placeholder="住所"/>
                     <input class="input-box" type="text" id="distance" placeholder="半径"/>
